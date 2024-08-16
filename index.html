@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #div1 {
+        height: 400px;
+        width: 300px;
+        display: grid;
+        grid-template-columns: 3fr 3fr 3fr 3fr;
+      }
+
+      .btn {
+        height: 50px;
+        width: 50px;
+        background: linear-gradient(yellow, green);
+        color: rgb(27, 26, 26);
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+        border: 1px solid black;
+        border-radius: 50%;
+      }
+      #screen {
+        height: 100px;
+        width: 240px;
+        border: 2px solid rgb(199, 167, 167);
+        margin: 5px;
+      }
+
+      #input {
+        height: 50px;
+        width: 234px;
+        border: 2px solid rgb(199, 167, 167);
+      }
+
+      #output {
+        height: 40px;
+        width: 234px;
+        border: 2px solid rgb(199, 167, 167);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="screen">
+      <input id="input" type="text" value="" />
+      <input id="output" type="text" readonly />
+    </div>
+    <div id="div1">
+      <button class="btn" onclick="fun(event)">1</button>
+      <button class="btn" onclick="fun(event)">2</button>
+      <button class="btn" onclick="fun(event)">3</button>
+      <button class="btn" onclick="fun(event)">+</button>
+      <button class="btn" onclick="fun(event)">4</button>
+      <button class="btn" onclick="fun(event)">5</button>
+      <button class="btn" onclick="fun(event)">6</button>
+      <button class="btn" onclick="fun(event)">-</button>
+      <button class="btn" onclick="fun(event)">7</button>
+      <button class="btn" onclick="fun(event)">8</button>
+      <button class="btn" onclick="fun(event)">9</button>
+      <button class="btn" onclick="fun(event)">*</button>
+      <button class="btn" onclick="fun(event)">0</button>
+      <button class="btn" onclick="fun(event)">/</button>
+      <button class="btn" onclick="fun(event)">cls</button>
+      <button class="btn" onclick="fun(event)">=</button>
+    </div>
+
+    <script>
+      function fun(event) {
+        let inp = document.getElementById("input");
+        let out = document.getElementById("output");
+
+        const button = event.target;
+
+        // Get the text content of the button
+        let buttonText = button.textContent;
+
+        if (inp.value === "" && (buttonText === "*" || buttonText === "+" || buttonText === "-" || buttonText === "/" || buttonText === "=")) {
+          inp.value = "Invalid Input";
+          return;
+        }
+        if (buttonText === "cls") {
+          inp.value = "";
+          out.value = "";
+        } else if (buttonText === "=") {
+          let result = eval(inp.value);
+          out.value = result;
+        } else {
+          inp.value += buttonText;
+        }
+
+        // Log or use the text content as needed
+      }
+    </script>
+  </body>
+</html>
